@@ -1,0 +1,14 @@
+{
+  "doc": { "foo": 1 },
+  "patch": [
+    {
+      "op": "add",
+      "path": "/bar",
+      "value": true
+    }
+  ],
+  "expected": {
+    "foo": 1,
+    "bar": true
+  }
+}

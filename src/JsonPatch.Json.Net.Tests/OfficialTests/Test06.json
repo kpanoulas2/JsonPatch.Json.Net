@@ -1,0 +1,14 @@
+{
+  "comment": "add replaces any existing field",
+  "doc": { "foo": null },
+  "patch": [
+    {
+      "op": "add",
+      "path": "/foo",
+      "value": 1
+    }
+  ],
+  "expected": { "foo": 1 }
+}
+
+

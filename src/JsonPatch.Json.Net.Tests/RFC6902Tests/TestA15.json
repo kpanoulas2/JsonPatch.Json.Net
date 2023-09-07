@@ -1,0 +1,24 @@
+{
+  "comment": "Test A15",
+  "doc": {
+    "/": 9,
+    "~1": 10
+  },
+
+  "patch": [
+    {
+      "op": "test",
+      "path": "/~01",
+      "value": "10"
+    },
+    {
+      "op": "add",
+      "path": "/fail",
+      "value": "fail"
+    }
+  ],
+  "expected": {
+    "/": 9,
+    "~1": 10
+  }
+}

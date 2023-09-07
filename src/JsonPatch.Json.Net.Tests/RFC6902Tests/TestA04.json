@@ -1,0 +1,14 @@
+{
+  "comment": "Test A4",
+  "doc": { "foo": [ "bar", "qux", "baz" ] },
+
+  "patch": [
+    {
+      "op": "remove",
+      "path": "/foo/1"
+    }
+  ],
+  "expected": { "foo": [ "bar", "baz" ] }
+}
+
+

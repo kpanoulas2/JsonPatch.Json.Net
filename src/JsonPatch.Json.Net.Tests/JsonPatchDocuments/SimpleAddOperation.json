@@ -1,0 +1,7 @@
+[
+  {
+    "op": "add",
+    "path": "/biscuits/1",
+    "value": { "name": "Ginger Nut" }
+  }
+]

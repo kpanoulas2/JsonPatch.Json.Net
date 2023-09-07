@@ -1,0 +1,16 @@
+{
+  "doc": [ "foo", "sil" ],
+  "patch": [
+    {
+      "op": "add",
+      "path": "/1",
+      "value": [ "bar", "baz" ]
+    }
+  ],
+  "expected": [
+    "foo",
+    [ "bar", "baz" ],
+    "sil"
+  ],
+  "comment": "value in array add not flattened"
+}

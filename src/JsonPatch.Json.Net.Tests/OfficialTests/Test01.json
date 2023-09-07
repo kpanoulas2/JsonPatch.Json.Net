@@ -1,0 +1,7 @@
+{
+  "comment": "empty list, empty docs",
+  "doc": {},
+  "patch": [],
+  "expected": {}
+}
+

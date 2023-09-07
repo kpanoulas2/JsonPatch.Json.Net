@@ -1,0 +1,15 @@
+{
+  "comment": "Test A12",
+  "doc": { "foo": "bar" },
+
+  "patch": [
+    {
+      "op": "add",
+      "path": "/baz/bat",
+      "value": "qux"
+    }
+  ],
+  "error": {
+    "message": ""
+  }
+}

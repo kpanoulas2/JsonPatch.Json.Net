@@ -1,0 +1,18 @@
+{
+  "comment": "rearrangements OK?  How about one level down...",
+  "doc": {
+    "foo": {
+      "foo": 1,
+      "bar": 2
+    }
+  },
+  "patch": [],
+  "expected": {
+    "foo": {
+      "bar": 2,
+      "foo": 1
+    }
+  }
+}
+
+

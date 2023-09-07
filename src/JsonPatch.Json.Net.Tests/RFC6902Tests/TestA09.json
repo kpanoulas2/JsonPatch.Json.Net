@@ -1,0 +1,20 @@
+{
+  "comment": "Test A9",
+  "doc": { "baz": "qux" },
+
+  "patch": [
+    {
+      "op": "test",
+      "path": "/baz",
+      "value": "bar"
+    },
+    {
+      "op": "add",
+      "path": "/fail",
+      "value": "fail"
+    }
+  ],
+  "expected": { "baz": "qux" }
+}
+
+

@@ -1,0 +1,11 @@
+{
+  "doc": [ "foo", "sil" ],
+  "patch": [
+    {
+      "op": "add",
+      "path": "/bar",
+      "value": 42
+    }
+  ],
+  "error": "Object operation on array target"
+}

@@ -1,0 +1,7 @@
+{
+  "comment": "toplevel array, no change",
+  "doc": [ "foo" ],
+  "patch": [],
+  "expected": [ "foo" ]
+}
+

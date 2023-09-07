@@ -1,0 +1,15 @@
+{
+  "comment": "0 can be an array index or object element name",
+  "doc": { "foo": 1 },
+  "patch": [
+    {
+      "op": "add",
+      "path": "/0",
+      "value": "bar"
+    }
+  ],
+  "expected": {
+    "foo": 1,
+    "0": "bar"
+  }
+}

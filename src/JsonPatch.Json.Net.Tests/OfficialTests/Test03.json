@@ -1,0 +1,14 @@
+{
+  "comment": "rearrangements OK?",
+  "doc": {
+    "foo": 1,
+    "bar": 2
+  },
+  "patch": [],
+  "expected": {
+    "bar": 2,
+    "foo": 1
+  }
+}
+
+

@@ -1,0 +1,15 @@
+{
+  "comment": "Test A7",
+  "doc": { "foo": [ "all", "grass", "cows", "eat" ] },
+
+  "patch": [
+    {
+      "op": "move",
+      "from": "/foo/1",
+      "path": "/foo/3"
+    }
+  ],
+  "expected": { "foo": [ "all", "cows", "eat", "grass" ] }
+}
+
+

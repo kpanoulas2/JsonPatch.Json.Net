@@ -1,0 +1,11 @@
+{
+  "doc": [ "foo", "sil" ],
+  "patch": [
+    {
+      "op": "add",
+      "path": "/0",
+      "value": "bar"
+    }
+  ],
+  "expected": [ "bar", "foo", "sil" ]
+}

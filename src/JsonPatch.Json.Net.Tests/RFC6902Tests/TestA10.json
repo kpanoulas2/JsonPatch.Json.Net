@@ -1,0 +1,21 @@
+{
+  "comment": "Test A10",
+  "doc": { "foo": "bar" },
+
+  "patch": [
+    {
+      "op": "add",
+      "path": "/child",
+      "value": { "grandchild": {} }
+    }
+  ],
+  "expected": {
+    "foo": "bar",
+    "child": {
+      "grandchild": {
+      }
+    }
+  }
+}
+
+

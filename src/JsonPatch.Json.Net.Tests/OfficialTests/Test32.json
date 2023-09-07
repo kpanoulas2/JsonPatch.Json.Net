@@ -1,0 +1,17 @@
+{
+  "comment": "test with bad number should not allow the patch to take place.",
+  "doc": [ "foo", "bar" ],
+  "patch": [
+    {
+      "op": "test",
+      "path": "/1e0",
+      "value": "bar"
+    },
+    {
+      "op": "add",
+      "path": "/-",
+      "value": "baz"
+    }
+  ],
+  "expected": [ "foo", "bar" ]
+}

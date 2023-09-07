@@ -1,0 +1,14 @@
+{
+  "comment": "toplevel array",
+  "doc": [],
+  "patch": [
+    {
+      "op": "add",
+      "path": "/0",
+      "value": "foo"
+    }
+  ],
+  "expected": [ "foo" ]
+}
+
+

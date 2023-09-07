@@ -1,0 +1,12 @@
+{
+  "comment": "toplevel object, integer",
+  "doc": {},
+  "patch": [
+    {
+      "op": "add",
+      "path": "/foo",
+      "value": 1
+    }
+  ],
+  "expected": { "foo": 1 }
+}

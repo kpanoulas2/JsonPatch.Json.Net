@@ -1,0 +1,12 @@
+{
+  "comment": "add item to array at index > length should fail",
+  "doc": [ "foo", "sil" ],
+  "patch": [
+    {
+      "op": "add",
+      "path": "/3",
+      "value": "bar"
+    }
+  ],
+  "error": "index is greater than number of items in array"
+}

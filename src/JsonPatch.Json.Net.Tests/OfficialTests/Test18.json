@@ -1,0 +1,15 @@
+{
+  "comment": "Add composite value at top level",
+  "doc": { "foo": 1 },
+  "patch": [
+    {
+      "op": "add",
+      "path": "/bar",
+      "value": [ 1, 2 ]
+    }
+  ],
+  "expected": {
+    "foo": 1,
+    "bar": [ 1, 2 ]
+  }
+}

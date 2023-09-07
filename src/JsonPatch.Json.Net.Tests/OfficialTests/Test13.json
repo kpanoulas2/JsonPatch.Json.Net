@@ -1,0 +1,13 @@
+{
+  "comment": "append to root array document?",
+  "doc": [],
+  "patch": [
+    {
+      "op": "add",
+      "path": "/-",
+      "value": "hi"
+    }
+  ],
+  "expected": [ "hi" ]
+}
+

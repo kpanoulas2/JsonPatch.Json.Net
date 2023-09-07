@@ -1,0 +1,12 @@
+{
+  "comment": "Add, / target",
+  "doc": {},
+  "patch": [
+    {
+      "op": "add",
+      "path": "/",
+      "value": 1
+    }
+  ],
+  "expected": { "": 1 }
+}

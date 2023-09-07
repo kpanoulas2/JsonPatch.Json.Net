@@ -1,0 +1,170 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+
+    <IsPackable>false</IsPackable>
+    <IsTestProject>true</IsTestProject>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="InvalidJsonPatchDocuments\InvalidSimpleAddOperation_MissingValue.json" />
+    <None Remove="InvalidJsonPatchDocuments\InvalidSimpleCopyOperation_MissingFrom.json" />
+    <None Remove="InvalidJsonPatchDocuments\InvalidSimpleCopyOperation_MissingPath.json" />
+    <None Remove="InvalidJsonPatchDocuments\InvalidSimpleMoveOperation_MissingFrom.json" />
+    <None Remove="InvalidJsonPatchDocuments\InvalidSimpleMoveOperation_MissingPath.json" />
+    <None Remove="InvalidJsonPatchDocuments\InvalidSimpleRemoveOperation_MissingPath.json" />
+    <None Remove="InvalidJsonPatchDocuments\InvalidSimpleReplaceOperation_MissingPath.json" />
+    <None Remove="InvalidJsonPatchDocuments\InvalidSimpleReplaceOperation_MissingValue.json" />
+    <None Remove="InvalidJsonPatchDocuments\InvalidSimpleTestOperation_MissingPath.json" />
+    <None Remove="InvalidJsonPatchDocuments\InvalidSimpleTestOperation_MissingValue.json" />
+    <None Remove="JsonPatchDocuments\InvalidSimpleAddOperation_MissingPath.json" />
+    <None Remove="JsonPatchDocuments\MultipleOperations.json" />
+    <None Remove="JsonPatchDocuments\RemoveOperationFromObjectOrArray.json" />
+    <None Remove="JsonPatchDocuments\SimpleAddOperation.json" />
+    <None Remove="JsonPatchDocuments\SimpleCopyOperation.json" />
+    <None Remove="JsonPatchDocuments\SimpleMoveOperation.json" />
+    <None Remove="JsonPatchDocuments\SimpleRemoveOperation.json" />
+    <None Remove="JsonPatchDocuments\SimpleReplaceOperation.json" />
+    <None Remove="JsonPatchDocuments\SimpleTestOperation.json" />
+    <None Remove="JsonPatchDocuments_SpecialPaths\Operation_PathWithLastIndexOfArrayIdentifier.json" />
+    <None Remove="JsonPatchDocuments_SpecialPaths\Operation_PathWithSlashIdentifier.json" />
+    <None Remove="JsonPatchDocuments_SpecialPaths\Operation_PathWithTildeIdentifier.json" />
+    <None Remove="OfficialTests\Test01.json" />
+    <None Remove="OfficialTests\Test02.json" />
+    <None Remove="OfficialTests\Test03.json" />
+    <None Remove="OfficialTests\Test04.json" />
+    <None Remove="OfficialTests\Test05.json" />
+    <None Remove="OfficialTests\Test06.json" />
+    <None Remove="OfficialTests\Test07.json" />
+    <None Remove="OfficialTests\Test08.json" />
+    <None Remove="OfficialTests\Test09.json" />
+    <None Remove="OfficialTests\Test10.json" />
+    <None Remove="OfficialTests\Test13.json" />
+    <None Remove="OfficialTests\Test15.json" />
+    <None Remove="OfficialTests\Test16.json" />
+    <None Remove="OfficialTests\Test17.json" />
+    <None Remove="OfficialTests\Test18.json" />
+    <None Remove="OfficialTests\Test19.json" />
+    <None Remove="OfficialTests\Test20.json" />
+    <None Remove="OfficialTests\Test21.json" />
+    <None Remove="OfficialTests\Test22.json" />
+    <None Remove="OfficialTests\Test23.json" />
+    <None Remove="OfficialTests\Test24.json" />
+    <None Remove="OfficialTests\Test25.json" />
+    <None Remove="OfficialTests\Test26.json" />
+    <None Remove="OfficialTests\Test27.json" />
+    <None Remove="OfficialTests\Test28.json" />
+    <None Remove="OfficialTests\Test29.json" />
+    <None Remove="OfficialTests\Test30.json" />
+    <None Remove="OfficialTests\Test31.json" />
+    <None Remove="OfficialTests\Test32.json" />
+    <None Remove="OfficialTests\Test33.json" />
+    <None Remove="OfficialTests\Test34.json" />
+    <None Remove="OfficialTests\Test35.json" />
+    <None Remove="OfficialTests\Test36.json" />
+    <None Remove="RFC6902Tests\TestA01.json" />
+    <None Remove="RFC6902Tests\TestA02.json" />
+    <None Remove="RFC6902Tests\TestA03.json" />
+    <None Remove="RFC6902Tests\TestA04.json" />
+    <None Remove="RFC6902Tests\TestA05.json" />
+    <None Remove="RFC6902Tests\TestA06.json" />
+    <None Remove="RFC6902Tests\TestA07.json" />
+    <None Remove="RFC6902Tests\TestA08.json" />
+    <None Remove="RFC6902Tests\TestA09.json" />
+    <None Remove="RFC6902Tests\TestA10.json" />
+    <None Remove="RFC6902Tests\TestA11.json" />
+    <None Remove="RFC6902Tests\TestA12.json" />
+    <None Remove="RFC6902Tests\TestA14.json" />
+    <None Remove="RFC6902Tests\TestA15.json" />
+    <None Remove="RFC6902Tests\TestA16.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="InvalidJsonPatchDocuments\InvalidSimpleCopyOperation_MissingFrom.json" />
+    <EmbeddedResource Include="InvalidJsonPatchDocuments\InvalidSimpleCopyOperation_MissingPath.json" />
+    <EmbeddedResource Include="InvalidJsonPatchDocuments\InvalidSimpleAddOperation_MissingValue.json" />
+    <EmbeddedResource Include="InvalidJsonPatchDocuments\InvalidSimpleMoveOperation_MissingFrom.json" />
+    <EmbeddedResource Include="InvalidJsonPatchDocuments\InvalidSimpleMoveOperation_MissingPath.json" />
+    <EmbeddedResource Include="InvalidJsonPatchDocuments\InvalidSimpleRemoveOperation_MissingPath.json" />
+    <EmbeddedResource Include="InvalidJsonPatchDocuments\InvalidSimpleReplaceOperation_MissingPath.json" />
+    <EmbeddedResource Include="InvalidJsonPatchDocuments\InvalidSimpleReplaceOperation_MissingValue.json" />
+    <EmbeddedResource Include="InvalidJsonPatchDocuments\InvalidSimpleTestOperation_MissingPath.json" />
+    <EmbeddedResource Include="InvalidJsonPatchDocuments\InvalidSimpleTestOperation_MissingValue.json" />
+    <EmbeddedResource Include="JsonPatchDocuments\RemoveOperationFromObjectOrArray.json" />
+    <EmbeddedResource Include="JsonPatchDocuments\MultipleOperations.json" />
+    <EmbeddedResource Include="InvalidJsonPatchDocuments\InvalidSimpleAddOperation_MissingPath.json" />
+    <EmbeddedResource Include="JsonPatchDocuments\SimpleTestOperation.json" />
+    <EmbeddedResource Include="JsonPatchDocuments\SimpleMoveOperation.json" />
+    <EmbeddedResource Include="JsonPatchDocuments\SimpleCopyOperation.json" />
+    <EmbeddedResource Include="JsonPatchDocuments\SimpleReplaceOperation.json" />
+    <EmbeddedResource Include="JsonPatchDocuments\SimpleRemoveOperation.json" />
+    <EmbeddedResource Include="JsonPatchDocuments\SimpleAddOperation.json" />
+    <EmbeddedResource Include="JsonPatchDocuments_SpecialPaths\Operation_PathWithLastIndexOfArrayIdentifier.json" />
+    <EmbeddedResource Include="JsonPatchDocuments_SpecialPaths\Operation_PathWithTildeIdentifier.json" />
+    <EmbeddedResource Include="JsonPatchDocuments_SpecialPaths\Operation_PathWithSlashIdentifier.json" />
+    <EmbeddedResource Include="OfficialTests\Test20.json" />
+    <EmbeddedResource Include="OfficialTests\Test21.json" />
+    <EmbeddedResource Include="OfficialTests\Test22.json" />
+    <EmbeddedResource Include="OfficialTests\Test23.json" />
+    <EmbeddedResource Include="OfficialTests\Test24.json" />
+    <EmbeddedResource Include="OfficialTests\Test26.json" />
+    <EmbeddedResource Include="OfficialTests\Test27.json" />
+    <EmbeddedResource Include="OfficialTests\Test36.json" />
+    <EmbeddedResource Include="OfficialTests\Test34.json" />
+    <EmbeddedResource Include="OfficialTests\Test35.json" />
+    <EmbeddedResource Include="OfficialTests\Test33.json" />
+    <EmbeddedResource Include="OfficialTests\Test32.json" />
+    <EmbeddedResource Include="OfficialTests\Test31.json" />
+    <EmbeddedResource Include="OfficialTests\Test30.json" />
+    <EmbeddedResource Include="OfficialTests\Test29.json" />
+    <EmbeddedResource Include="OfficialTests\Test28.json" />
+    <EmbeddedResource Include="OfficialTests\Test25.json" />
+    <EmbeddedResource Include="OfficialTests\Test19.json" />
+    <EmbeddedResource Include="OfficialTests\Test18.json" />
+    <EmbeddedResource Include="OfficialTests\Test17.json" />
+    <EmbeddedResource Include="OfficialTests\Test16.json" />
+    <EmbeddedResource Include="OfficialTests\Test15.json" />
+    <EmbeddedResource Include="OfficialTests\Test13.json" />
+    <EmbeddedResource Include="OfficialTests\Test10.json" />
+    <EmbeddedResource Include="OfficialTests\Test09.json" />
+    <EmbeddedResource Include="OfficialTests\Test08.json" />
+    <EmbeddedResource Include="OfficialTests\Test07.json" />
+    <EmbeddedResource Include="OfficialTests\Test06.json" />
+    <EmbeddedResource Include="OfficialTests\Test05.json" />
+    <EmbeddedResource Include="OfficialTests\Test04.json" />
+    <EmbeddedResource Include="OfficialTests\Test03.json" />
+    <EmbeddedResource Include="OfficialTests\Test02.json" />
+    <EmbeddedResource Include="OfficialTests\Test01.json" />
+    <EmbeddedResource Include="RFC6902Tests\TestA16.json" />
+    <EmbeddedResource Include="RFC6902Tests\TestA15.json" />
+    <EmbeddedResource Include="RFC6902Tests\TestA14.json" />
+    <EmbeddedResource Include="RFC6902Tests\TestA12.json" />
+    <EmbeddedResource Include="RFC6902Tests\TestA11.json" />
+    <EmbeddedResource Include="RFC6902Tests\TestA10.json" />
+    <EmbeddedResource Include="RFC6902Tests\TestA09.json" />
+    <EmbeddedResource Include="RFC6902Tests\TestA08.json" />
+    <EmbeddedResource Include="RFC6902Tests\TestA07.json" />
+    <EmbeddedResource Include="RFC6902Tests\TestA06.json" />
+    <EmbeddedResource Include="RFC6902Tests\TestA05.json" />
+    <EmbeddedResource Include="RFC6902Tests\TestA04.json" />
+    <EmbeddedResource Include="RFC6902Tests\TestA03.json" />
+    <EmbeddedResource Include="RFC6902Tests\TestA02.json" />
+    <EmbeddedResource Include="RFC6902Tests\TestA01.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.5.0" />
+    <PackageReference Include="NUnit" Version="3.13.3" />
+    <PackageReference Include="NUnit3TestAdapter" Version="4.4.2" />
+    <PackageReference Include="NUnit.Analyzers" Version="3.6.1" />
+    <PackageReference Include="coverlet.collector" Version="3.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\JsonPatch.Json.Net\JsonPatch.Json.Net.csproj" />
+  </ItemGroup>
+
+</Project>

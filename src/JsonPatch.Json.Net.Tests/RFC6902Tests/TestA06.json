@@ -1,0 +1,31 @@
+{
+  "comment": "Test A6",
+  "doc": {
+    "foo": {
+      "bar": "baz",
+      "waldo": "fred"
+    },
+    "qux": {
+      "corge": "grault"
+    }
+  },
+
+  "patch": [
+    {
+      "op": "move",
+      "from": "/foo/waldo",
+      "path": "/qux/thud"
+    }
+  ],
+  "expected": {
+    "foo": {
+      "bar": "baz"
+    },
+    "qux": {
+      "corge": "grault",
+      "thud": "fred"
+    }
+  }
+}
+
+

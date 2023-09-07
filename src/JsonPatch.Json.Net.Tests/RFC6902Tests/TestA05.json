@@ -1,0 +1,21 @@
+{
+  "comment": "Test A5",
+  "doc": {
+    "baz": "qux",
+    "foo": "bar"
+  },
+
+  "patch": [
+    {
+      "op": "replace",
+      "path": "/baz",
+      "value": "boo"
+    }
+  ],
+  "expected": {
+    "baz": "boo",
+    "foo": "bar"
+  }
+}
+
+

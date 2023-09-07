@@ -1,0 +1,23 @@
+{
+  "comment": "Add into composite value",
+  "doc": {
+    "foo": 1,
+    "baz": [ { "qux": "hello" } ]
+  },
+  "patch": [
+    {
+      "op": "add",
+      "path": "/baz/0/foo",
+      "value": "world"
+    }
+  ],
+  "expected": {
+    "foo": 1,
+    "baz": [
+      {
+        "qux": "hello",
+        "foo": "world"
+      }
+    ]
+  }
+}

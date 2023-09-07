@@ -1,0 +1,12 @@
+{
+  "comment": "push item to array via last index + 1",
+  "doc": [ "foo", "sil" ],
+  "patch": [
+    {
+      "op": "add",
+      "path": "/2",
+      "value": "bar"
+    }
+  ],
+  "expected": [ "foo", "sil", "bar" ]
+}

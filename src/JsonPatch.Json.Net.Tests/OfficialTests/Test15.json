@@ -1,0 +1,12 @@
+{
+  "comment": "Add, /foo/ deep target (trailing slash)",
+  "doc": { "foo": {} },
+  "patch": [
+    {
+      "op": "add",
+      "path": "/foo/",
+      "value": 1
+    }
+  ],
+  "expected": { "foo": { "": 1 } }
+}

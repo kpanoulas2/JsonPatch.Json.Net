@@ -1,0 +1,11 @@
+{
+  "doc": { "bar": [ 1, 2 ] },
+  "patch": [
+    {
+      "op": "add",
+      "path": "/bar/8",
+      "value": "5"
+    }
+  ],
+  "error": "Out of bounds (upper)"
+}
