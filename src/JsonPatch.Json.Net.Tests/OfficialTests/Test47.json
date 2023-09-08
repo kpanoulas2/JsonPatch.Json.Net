@@ -1,0 +1,13 @@
+{
+  "comment": "spurious patch properties",
+  "doc": { "foo": 1 },
+  "patch": [
+    {
+      "op": "test",
+      "path": "/foo",
+      "value": 1,
+      "spurious": 1
+    }
+  ],
+  "expected": { "foo": 1 }
+}

@@ -1,0 +1,11 @@
+{
+  "doc": [ "" ],
+  "patch": [
+    {
+      "op": "replace",
+      "path": "/0",
+      "value": false
+    }
+  ],
+  "expected": [ false ]
+}

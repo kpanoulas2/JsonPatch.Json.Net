@@ -17,8 +17,5 @@
       "value": "fail"
     }
   ],
-  "expected": {
-    "/": 9,
-    "~1": 10
-  }
+  "error": "Value found at path, but does not match provided value."
 }

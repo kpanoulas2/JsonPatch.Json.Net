@@ -1,0 +1,12 @@
+{
+  "comment": "Test add with bad number should fail. An add op shouldn't add to array with bad number",
+  "doc": [ "foo", "sil" ],
+  "patch": [
+    {
+      "op": "add",
+      "path": "/1e0",
+      "value": "bar"
+    }
+  ],
+  "error": "Expected an array index at path segment but found '1e0'."
+}

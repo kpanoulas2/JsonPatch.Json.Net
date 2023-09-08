@@ -1,0 +1,12 @@
+{
+  "comment": "test replace with missing parent key should fail",
+  "doc": { "bar": "baz" },
+  "patch": [
+    {
+      "op": "replace",
+      "path": "/foo/bar",
+      "value": false
+    }
+  ],
+  "error": "Object not found at path."
+}

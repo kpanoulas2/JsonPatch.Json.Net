@@ -8,5 +8,5 @@
       "value": "bar"
     }
   ],
-  "error": "index is greater than number of items in array"
+  "error": "Index out of range. Provided 3 when the minimum value is 0 and the maximum value is 2."
 }

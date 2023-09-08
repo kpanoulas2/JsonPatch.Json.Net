@@ -1,0 +1,11 @@
+{
+  "comment": "Test remove with bad index should fail. A remove op shouldn't remove from array with bad number.",
+  "doc": [ 1, 2, 3, 4 ],
+  "patch": [
+    {
+      "op": "remove",
+      "path": "/1e0"
+    }
+  ],
+  "error": "Expected an array index at path segment but found '1e0'."
+}

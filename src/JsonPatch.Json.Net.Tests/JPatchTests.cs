@@ -58,6 +58,62 @@ namespace JsonPatch.Json.Net.Tests
         [TestCase("JsonPatch.Json.Net.Tests.OfficialTests.Test34.json")]
         [TestCase("JsonPatch.Json.Net.Tests.OfficialTests.Test35.json")]
         [TestCase("JsonPatch.Json.Net.Tests.OfficialTests.Test36.json")]
+        [TestCase("JsonPatch.Json.Net.Tests.OfficialTests.Test37.json")]
+        [TestCase("JsonPatch.Json.Net.Tests.OfficialTests.Test38.json")]
+        [TestCase("JsonPatch.Json.Net.Tests.OfficialTests.Test39.json")]
+        [TestCase("JsonPatch.Json.Net.Tests.OfficialTests.Test40.json")]
+        [TestCase("JsonPatch.Json.Net.Tests.OfficialTests.Test41.json")]
+        [TestCase("JsonPatch.Json.Net.Tests.OfficialTests.Test42.json")]
+        [TestCase("JsonPatch.Json.Net.Tests.OfficialTests.Test43.json")]
+        [TestCase("JsonPatch.Json.Net.Tests.OfficialTests.Test44.json")]
+        [TestCase("JsonPatch.Json.Net.Tests.OfficialTests.Test45.json")]
+        [TestCase("JsonPatch.Json.Net.Tests.OfficialTests.Test46.json")]
+        [TestCase("JsonPatch.Json.Net.Tests.OfficialTests.Test47.json")]
+        [TestCase("JsonPatch.Json.Net.Tests.OfficialTests.Test48.json")]
+        [TestCase("JsonPatch.Json.Net.Tests.OfficialTests.Test49.json")]
+        [TestCase("JsonPatch.Json.Net.Tests.OfficialTests.Test50.json")]
+        [TestCase("JsonPatch.Json.Net.Tests.OfficialTests.Test51.json")]
+        [TestCase("JsonPatch.Json.Net.Tests.OfficialTests.Test52.json")]
+        [TestCase("JsonPatch.Json.Net.Tests.OfficialTests.Test53.json")]
+        [TestCase("JsonPatch.Json.Net.Tests.OfficialTests.Test54.json")]
+        [TestCase("JsonPatch.Json.Net.Tests.OfficialTests.Test55.json")]
+        [TestCase("JsonPatch.Json.Net.Tests.OfficialTests.Test56.json")]
+        [TestCase("JsonPatch.Json.Net.Tests.OfficialTests.Test57.json")]
+        [TestCase("JsonPatch.Json.Net.Tests.OfficialTests.Test59.json")]
+        [TestCase("JsonPatch.Json.Net.Tests.OfficialTests.Test60.json")]
+        [TestCase("JsonPatch.Json.Net.Tests.OfficialTests.Test61.json")]
+        [TestCase("JsonPatch.Json.Net.Tests.OfficialTests.Test62.json")]
+        [TestCase("JsonPatch.Json.Net.Tests.OfficialTests.Test63.json")]
+        [TestCase("JsonPatch.Json.Net.Tests.OfficialTests.Test64.json")]
+        [TestCase("JsonPatch.Json.Net.Tests.OfficialTests.Test65.json")]
+        [TestCase("JsonPatch.Json.Net.Tests.OfficialTests.Test66.json")]
+        [TestCase("JsonPatch.Json.Net.Tests.OfficialTests.Test67.json")]
+        [TestCase("JsonPatch.Json.Net.Tests.OfficialTests.Test68.json")]
+        [TestCase("JsonPatch.Json.Net.Tests.OfficialTests.Test69.json")]
+        [TestCase("JsonPatch.Json.Net.Tests.OfficialTests.Test70.json")]
+        [TestCase("JsonPatch.Json.Net.Tests.OfficialTests.Test71.json")]
+        [TestCase("JsonPatch.Json.Net.Tests.OfficialTests.Test72.json")]
+        [TestCase("JsonPatch.Json.Net.Tests.OfficialTests.Test73.json")]
+        [TestCase("JsonPatch.Json.Net.Tests.OfficialTests.Test74.json")]
+        [TestCase("JsonPatch.Json.Net.Tests.OfficialTests.Test75.json")]
+        [TestCase("JsonPatch.Json.Net.Tests.OfficialTests.Test76.json")]
+        [TestCase("JsonPatch.Json.Net.Tests.OfficialTests.Test77.json")]
+        [TestCase("JsonPatch.Json.Net.Tests.OfficialTests.Test78.json")]
+        [TestCase("JsonPatch.Json.Net.Tests.OfficialTests.Test79.json")]
+        [TestCase("JsonPatch.Json.Net.Tests.OfficialTests.Test80.json")]
+        [TestCase("JsonPatch.Json.Net.Tests.OfficialTests.Test81.json")]
+        [TestCase("JsonPatch.Json.Net.Tests.OfficialTests.Test82.json")]
+        [TestCase("JsonPatch.Json.Net.Tests.OfficialTests.Test83.json")]
+        [TestCase("JsonPatch.Json.Net.Tests.OfficialTests.Test84.json")]
+        [TestCase("JsonPatch.Json.Net.Tests.OfficialTests.Test85.json")]
+        [TestCase("JsonPatch.Json.Net.Tests.OfficialTests.Test86.json")]
+        [TestCase("JsonPatch.Json.Net.Tests.OfficialTests.Test88.json")]
+        [TestCase("JsonPatch.Json.Net.Tests.OfficialTests.Test89.json")]
+        [TestCase("JsonPatch.Json.Net.Tests.OfficialTests.Test90.json")]
+        [TestCase("JsonPatch.Json.Net.Tests.OfficialTests.Test91.json")]
+        [TestCase("JsonPatch.Json.Net.Tests.OfficialTests.Test92.json")]
+        [TestCase("JsonPatch.Json.Net.Tests.OfficialTests.Test93.json")]
+        [TestCase("JsonPatch.Json.Net.Tests.OfficialTests.Test94.json")]
         public void GivenASourceDocumentAPatchDocumentAndAnExpectedResult_WhenPatchIsExecutedOnTheSourceDocument_ThenTheExpectedResultIsReturned(
             string testFilename)
         {
@@ -73,23 +129,28 @@ namespace JsonPatch.Json.Net.Tests
                 throw new InvalidOperationException("Test does not have the right structure");
             }
 
-
             if(expectedResult is null && expectedError is null)
             {
                 throw new InvalidOperationException("Test does not have the right structure");
             }
 
-            var patchDocument = JPatchDocument.Load(patchObject.ToString());
+            
 
             if(expectedResult is not null)
             {
+                var patchDocument = JPatchDocument.Load(patchObject.ToString());
                 var actualResult = JPatch.Patch(sourceObject, patchDocument);
                 var jTokenEqualityComparer = new JTokenEqualityComparer();
                 Assert.That(jTokenEqualityComparer.Equals(expectedResult, actualResult), Is.True);
                 return;
             }
 
-            Assert.Throws<JPatchException>(() => JPatch.Patch(sourceObject, patchDocument));
+            var exception = Assert.Throws<JPatchException>(() =>
+            {
+                var patchDocument = JPatchDocument.Load(patchObject.ToString());
+                JPatch.Patch(sourceObject, patchDocument);
+            });
+            Assert.That(exception.Message, Is.EqualTo(expectedError!.Value<string>()));
 
         }
     }

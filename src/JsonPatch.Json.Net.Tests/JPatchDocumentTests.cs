@@ -32,7 +32,7 @@ namespace JsonPatch.Json.Net.Tests
             Assert.That(jsonPatchDocument.Operations.Count, Is.EqualTo(1));
             var addOperation = jsonPatchDocument.Operations[0];
             Assert.That(addOperation.Type, Is.EqualTo(OperationType.Add));
-            Assert.That(addOperation.PathSegments.Count, Is.EqualTo(3));
+            Assert.That(addOperation.PathSegments.Count, Is.EqualTo(2));
             Assert.That(addOperation.FromSegments, Is.Empty);
             Assert.That(addOperation.Value, Is.TypeOf<JObject>());
             Assert.That(addOperation.Value.Value<string>("name"), Is.EqualTo("Ginger Nut"));
@@ -46,8 +46,8 @@ namespace JsonPatch.Json.Net.Tests
             Assert.That(jsonPatchDocument.Operations.Count, Is.EqualTo(1));
             var addOperation = jsonPatchDocument.Operations[0];
             Assert.That(addOperation.Type, Is.EqualTo(OperationType.Copy));
-            Assert.That(addOperation.PathSegments.Count, Is.EqualTo(2));
-            Assert.That(addOperation.FromSegments.Count, Is.EqualTo(3));
+            Assert.That(addOperation.PathSegments.Count, Is.EqualTo(1));
+            Assert.That(addOperation.FromSegments.Count, Is.EqualTo(2));
             Assert.That(addOperation.Value, Is.Null);
         }
 
@@ -59,8 +59,8 @@ namespace JsonPatch.Json.Net.Tests
             Assert.That(jsonPatchDocument.Operations.Count, Is.EqualTo(1));
             var addOperation = jsonPatchDocument.Operations[0];
             Assert.That(addOperation.Type, Is.EqualTo(OperationType.Move));
-            Assert.That(addOperation.PathSegments.Count, Is.EqualTo(2));
-            Assert.That(addOperation.FromSegments.Count, Is.EqualTo(2));
+            Assert.That(addOperation.PathSegments.Count, Is.EqualTo(1));
+            Assert.That(addOperation.FromSegments.Count, Is.EqualTo(1));
             Assert.That(addOperation.Value, Is.Null);
         }
 
@@ -72,7 +72,7 @@ namespace JsonPatch.Json.Net.Tests
             Assert.That(jsonPatchDocument.Operations.Count, Is.EqualTo(1));
             var addOperation = jsonPatchDocument.Operations[0];
             Assert.That(addOperation.Type, Is.EqualTo(OperationType.Remove));
-            Assert.That(addOperation.PathSegments.Count, Is.EqualTo(2));
+            Assert.That(addOperation.PathSegments.Count, Is.EqualTo(1));
             Assert.That(addOperation.FromSegments, Is.Empty);
             Assert.That(addOperation.Value, Is.Null);
         }
@@ -85,7 +85,7 @@ namespace JsonPatch.Json.Net.Tests
             Assert.That(jsonPatchDocument.Operations.Count, Is.EqualTo(1));
             var addOperation = jsonPatchDocument.Operations[0];
             Assert.That(addOperation.Type, Is.EqualTo(OperationType.Replace));
-            Assert.That(addOperation.PathSegments.Count, Is.EqualTo(4));
+            Assert.That(addOperation.PathSegments.Count, Is.EqualTo(3));
             Assert.That(addOperation.FromSegments, Is.Empty);
             Assert.That(addOperation.Value, Is.TypeOf<JValue>());
         }
@@ -98,7 +98,7 @@ namespace JsonPatch.Json.Net.Tests
             Assert.That(jsonPatchDocument.Operations.Count, Is.EqualTo(1));
             var addOperation = jsonPatchDocument.Operations[0];
             Assert.That(addOperation.Type, Is.EqualTo(OperationType.Test));
-            Assert.That(addOperation.PathSegments.Count, Is.EqualTo(3));
+            Assert.That(addOperation.PathSegments.Count, Is.EqualTo(2));
             Assert.That(addOperation.FromSegments, Is.Empty);
             Assert.That(addOperation.Value, Is.TypeOf<JValue>());
         }
@@ -126,7 +126,7 @@ namespace JsonPatch.Json.Net.Tests
         {
             var resourceFilename = "JsonPatch.Json.Net.Tests.JsonPatchDocuments_SpecialPaths.Operation_PathWithSlashIdentifier.json";
             var jPatchDocument = JPatchDocument.Load(ResourceLoader.LoadJson(resourceFilename));
-            Assert.That(jPatchDocument.Operations.First().PathSegments[2], Is.EqualTo("fieldA/B"));
+            Assert.That(jPatchDocument.Operations.First().PathSegments[1], Is.EqualTo("fieldA/B"));
         }
 
         [Test]
@@ -134,7 +134,7 @@ namespace JsonPatch.Json.Net.Tests
         {
             var resourceFilename = "JsonPatch.Json.Net.Tests.JsonPatchDocuments_SpecialPaths.Operation_PathWithTildeIdentifier.json";
             var jPatchDocument = JPatchDocument.Load(ResourceLoader.LoadJson(resourceFilename));
-            Assert.That(jPatchDocument.Operations.First().PathSegments[2], Is.EqualTo("fieldA~B"));
+            Assert.That(jPatchDocument.Operations.First().PathSegments[1], Is.EqualTo("fieldA~B"));
         }
 
         [Test]
@@ -142,7 +142,7 @@ namespace JsonPatch.Json.Net.Tests
         {
             var resourceFilename = "JsonPatch.Json.Net.Tests.JsonPatchDocuments_SpecialPaths.Operation_PathWithLastIndexOfArrayIdentifier.json";
             var jPatchDocument = JPatchDocument.Load(ResourceLoader.LoadJson(resourceFilename));
-            Assert.That(jPatchDocument.Operations.First().PathSegments[2], Is.EqualTo("-"));
+            Assert.That(jPatchDocument.Operations.First().PathSegments[1], Is.EqualTo("-"));
         }
 
     }

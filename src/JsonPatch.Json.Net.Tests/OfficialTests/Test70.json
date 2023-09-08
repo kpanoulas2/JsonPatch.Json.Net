@@ -1,0 +1,15 @@
+{
+  "comment": "test repeated removes",
+  "doc": [ 1, 2, 3, 4 ],
+  "patch": [
+    {
+      "op": "remove",
+      "path": "/1"
+    },
+    {
+      "op": "remove",
+      "path": "/2"
+    }
+  ],
+  "expected": [ 1, 3 ]
+}

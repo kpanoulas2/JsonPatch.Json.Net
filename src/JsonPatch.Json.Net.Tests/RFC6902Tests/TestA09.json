@@ -14,7 +14,7 @@
       "value": "fail"
     }
   ],
-  "expected": { "baz": "qux" }
+  "error": "Value found at path, but does not match provided value."
 }
 
 

@@ -1,0 +1,12 @@
+{
+  "comment": "Move to same location has no effect",
+  "doc": { "foo": 1 },
+  "patch": [
+    {
+      "op": "move",
+      "from": "/foo",
+      "path": "/foo"
+    }
+  ],
+  "expected": { "foo": 1 }
+}

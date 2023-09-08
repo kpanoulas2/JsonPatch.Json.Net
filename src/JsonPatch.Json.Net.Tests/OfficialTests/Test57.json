@@ -1,0 +1,11 @@
+{
+  "doc": { "foo": { "bar": [ 1, 2, 5, 4 ] } },
+  "patch": [
+    {
+      "op": "test",
+      "path": "/foo",
+      "value": [ 1, 2 ]
+    }
+  ],
+  "error": "Value found at path, but does not match provided value."
+}

@@ -1,0 +1,18 @@
+{
+  "doc": {
+    "baz": [ { "qux": "hello" } ],
+    "bar": 1
+  },
+  "patch": [
+    {
+      "op": "copy",
+      "from": "/baz/0",
+      "path": "/boo"
+    }
+  ],
+  "expected": {
+    "baz": [ { "qux": "hello" } ],
+    "bar": 1,
+    "boo": { "qux": "hello" }
+  }
+}

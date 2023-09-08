@@ -1,0 +1,12 @@
+{
+  "comment": "'path' parameter with null value. Null is not valid value for 'path'",
+  "doc": {},
+  "patch": [
+    {
+      "op": "add",
+      "path": null,
+      "value": "bar"
+    }
+  ],
+  "error": "Document does not contain a valid JsonPatch schema."
+}

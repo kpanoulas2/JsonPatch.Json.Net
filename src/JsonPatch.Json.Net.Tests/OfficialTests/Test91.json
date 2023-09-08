@@ -1,0 +1,11 @@
+{
+  "comment": "Removing nonexistent field",
+  "doc": { "foo": "bar" },
+  "patch": [
+    {
+      "op": "remove",
+      "path": "/baz"
+    }
+  ],
+  "error": "Property not found."
+}

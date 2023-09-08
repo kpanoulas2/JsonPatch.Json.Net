@@ -1,0 +1,11 @@
+{
+  "doc": { "foo": null },
+  "patch": [
+    {
+      "op": "remove",
+      "path": "/foo"
+    }
+  ],
+  "expected": {},
+  "comment": "null value should be valid obj property to be removed"
+}

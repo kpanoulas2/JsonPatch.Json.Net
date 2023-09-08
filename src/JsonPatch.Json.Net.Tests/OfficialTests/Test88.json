@@ -1,0 +1,12 @@
+{
+  "comment": "unrecognized op should fail",
+  "doc": { "foo": 1 },
+  "patch": [
+    {
+      "op": "spam",
+      "path": "/foo",
+      "value": 1
+    }
+  ],
+  "error": "Document does not contain a valid JsonPatch schema."
+}

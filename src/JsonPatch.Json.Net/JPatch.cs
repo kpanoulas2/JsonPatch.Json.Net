@@ -27,7 +27,7 @@ namespace JsonPatch.Json.Net
                 throw new ArgumentNullException(nameof(sourceObject));
             }
 
-            if(!TryPatch(sourceObject, patch, out var result, out var failReason))
+            if (!TryPatch(sourceObject, patch, out var result, out var failReason))
             {
                 throw new JPatchException(failReason);
             }
@@ -51,19 +51,21 @@ namespace JsonPatch.Json.Net
                 return false;
             }
 
-            if (patch.Operations.Where(t => t.Type == OperationType.Test).Any(t => !TryTest(t, sourceObject)))
+            foreach (var testOperation in patch.Operations.Where(t => t.Type == OperationType.Test))
             {
-                result = sourceObject;
-                patchFailReason = null;
-                return true;
+                if (!TryTest(testOperation, sourceObject, out patchFailReason))
+                {
+                    result = null;
+                    return false;
+                }
             }
 
             result = sourceObject.DeepClone();
             foreach (var operation in patch.Operations.Where(t => t.Type != OperationType.Test))
             {
-                if(!TryExecuteOperation(operation, ref result, out patchFailReason))
+                if (!TryExecuteOperation(operation, ref result, out patchFailReason))
                 {
-                    result = sourceObject;
+                    result = null;
                     return false;
                 }
             }
@@ -72,26 +74,31 @@ namespace JsonPatch.Json.Net
             return true;
         }
 
-        private static bool TryTest(Operation operation, JToken sourceObject)
+        private static bool TryTest(Operation operation, JToken sourceObject, [NotNullWhen(false)] out JPatchFailReason? patchFailReason)
         {
             if (operation.Type != OperationType.Test)
             {
                 throw new InvalidOperationException("Only test operation is expected when executing this function.");
             }
 
-            if (!TryGetTokenAtPath(sourceObject, operation.PathSegments, out var locatedValue, out _))
+            if (!TryGetTokenAtPath(sourceObject, operation.PathSegments, out var locatedValue, out patchFailReason))
             {
                 return false;
             }
 
             var jTokenEqualityComparer = new JTokenEqualityComparer();
 
-            return jTokenEqualityComparer.Equals(operation.Value, locatedValue);
+            if (!jTokenEqualityComparer.Equals(operation.Value, locatedValue))
+            {
+                patchFailReason = new JPatchFailReason("Value found at path, but does not match provided value.", string.Join('/', operation.PathSegments));
+                return false;
+            }
+            return true;
         }
 
         private static bool TryExecuteOperation(Operation operation, ref JToken sourceObject, [NotNullWhen(false)] out JPatchFailReason? patchFailReason)
         {
-            switch(operation.Type)
+            switch (operation.Type)
             {
                 case OperationType.Test:
                     throw new InvalidOperationException("Test operations are executed outside of the main execution loop.");
@@ -105,12 +112,10 @@ namespace JsonPatch.Json.Net
                     return TryExecuteMoveOperation(operation, ref sourceObject, out patchFailReason);
                 case OperationType.Copy:
                     return TryExecuteCopyOperation(operation, ref sourceObject, out patchFailReason);
-
-
             }
 
-            patchFailReason = new JPatchFailReason("Not implemented yet", "");
-            return true;
+            patchFailReason = new JPatchFailReason("Unknown operation type.", string.Empty);
+            return false;
         }
 
         private static bool TryExecuteAddOperation(Operation operation, ref JToken sourceObject, [NotNullWhen(false)] out JPatchFailReason? patchFailReason)
@@ -120,14 +125,21 @@ namespace JsonPatch.Json.Net
                 throw new ArgumentNullException(nameof(operation));
             }
 
-            if(operation.Type != OperationType.Add)
+            if (operation.Type != OperationType.Add)
             {
                 throw new InvalidOperationException("Expected an add operation");
             }
 
-            if(operation.Value is null)
+            if (operation.Value is null)
             {
                 throw new InvalidOperationException("Operation add expects a value.");
+            }
+
+            if (!operation.PathSegments.Any())
+            {
+                patchFailReason = null;
+                sourceObject = operation.Value;
+                return true;
             }
 
             var parentPathSegments = operation.PathSegments.Take(operation.PathSegments.Count - 1).ToArray();
@@ -182,6 +194,13 @@ namespace JsonPatch.Json.Net
                 throw new InvalidOperationException("Operation add expects a value.");
             }
 
+            if (!operation.PathSegments.Any())
+            {
+                sourceObject = operation.Value;
+                patchFailReason = null;
+                return true;
+            }
+
             var parentPathSegments = operation.PathSegments.Take(operation.PathSegments.Count - 1).ToArray();
 
             if (!TryGetTokenAtPath(sourceObject, parentPathSegments, out var parentToken, out patchFailReason))
@@ -212,7 +231,7 @@ namespace JsonPatch.Json.Net
                 return false;
             }
 
-            if(!TryToGetTokenFromToken(fromParentToken, lastFromSegment, out var fromToken, out patchFailReason))
+            if (!TryToGetTokenFromToken(fromParentToken, lastFromSegment, out var fromToken, out patchFailReason))
             {
                 return false;
             }
@@ -262,9 +281,16 @@ namespace JsonPatch.Json.Net
         private static bool TryGetTokenAtPath(JToken sourceObject, IReadOnlyList<string> pathSegments, [NotNullWhen(true)] out JToken? token, [NotNullWhen(false)] out JPatchFailReason? patchFailReason)
         {
             token = sourceObject;
+
+            if (!pathSegments.Any())
+            {
+                patchFailReason = null;
+                return true;
+            }
+
             var effectivePath = new StringBuilder();
 
-            for (var index = 1; index < pathSegments.Count; index++)
+            for (var index = 0; index < pathSegments.Count; index++)
             {
                 if (token is null)
                 {
@@ -304,6 +330,19 @@ namespace JsonPatch.Json.Net
                         patchFailReason = new JPatchFailReason($"Expected an array index at path segment but found '{segment}'.", effectivePath.ToString());
                         return false;
                     }
+                    else if (string.Compare(arrayIndex.ToString(), segment, StringComparison.Ordinal) != 0)
+                    {
+                        patchFailReason = new JPatchFailReason($"Array indices with leading zeros are considered errors. Found '{segment}'.", string.Empty);
+                        return false;
+                    }
+
+                    if (arrayIndex >= tokenAsArray.Count || arrayIndex < 0)
+                    {
+                        patchFailReason = new JPatchFailReason($"Index out of range. Provided {arrayIndex} when the minimum value is 0 and the maximum value is {tokenAsArray.Count - 1}.", string.Empty);
+                        return false;
+                    }
+
+
                     effectivePath.Append('/').Append(arrayIndex);
                     token = tokenAsArray[arrayIndex];
                     continue;
@@ -314,7 +353,7 @@ namespace JsonPatch.Json.Net
             }
             if (token is null)
             {
-                patchFailReason = new JPatchFailReason("Object not found at path", effectivePath.ToString());
+                patchFailReason = new JPatchFailReason("Object not found at path.", effectivePath.ToString());
                 return false;
             }
 
@@ -324,9 +363,9 @@ namespace JsonPatch.Json.Net
         }
 
         private static bool TryToAddTokenToToken(
-            JToken sourceObject, 
-            string segment, 
-            JToken valueToAdd, 
+            JToken sourceObject,
+            string segment,
+            JToken valueToAdd,
             [NotNullWhen(false)] out JPatchFailReason? patchFailReason)
         {
             patchFailReason = null;
@@ -355,10 +394,15 @@ namespace JsonPatch.Json.Net
                     patchFailReason = new JPatchFailReason($"Expected an array index at path segment but found '{segment}'.", string.Empty);
                     return false;
                 }
-
-                if(arrayIndex > sourceObjectAsArray.Count || arrayIndex < 0)
+                else if (string.Compare(arrayIndex.ToString(), segment, StringComparison.Ordinal) != 0)
                 {
-                    patchFailReason = new JPatchFailReason($"Index out of range. Provided {arrayIndex} when the minimum value is 0 and the maximum value is {sourceObjectAsArray.Count}'{segment}'.", string.Empty);
+                    patchFailReason = new JPatchFailReason($"Array indices with leading zeros are considered errors. Found '{segment}'.", string.Empty);
+                    return false;
+                }
+
+                if (arrayIndex > sourceObjectAsArray.Count || arrayIndex < 0)
+                {
+                    patchFailReason = new JPatchFailReason($"Index out of range. Provided {arrayIndex} when the minimum value is 0 and the maximum value is {sourceObjectAsArray.Count}.", string.Empty);
                     return false;
                 }
 
@@ -401,6 +445,11 @@ namespace JsonPatch.Json.Net
                     patchFailReason = new JPatchFailReason($"Expected an array index at path segment but found '{segment}'.", string.Empty);
                     return false;
                 }
+                else if (string.Compare(arrayIndex.ToString(), segment, StringComparison.Ordinal) != 0)
+                {
+                    patchFailReason = new JPatchFailReason($"Array indices with leading zeros are considered errors. Found '{segment}'.", string.Empty);
+                    return false;
+                }
 
                 sourceObjectAsArray[arrayIndex] = valueToAdd;
                 patchFailReason = null;
@@ -422,7 +471,11 @@ namespace JsonPatch.Json.Net
                     throw new InvalidOperationException("Expected object as type was checked");
                 }
 
-                sourceObjectAsObject.Remove(segment);
+                if (!sourceObjectAsObject.Remove(segment))
+                {
+                    patchFailReason = new JPatchFailReason($"Property not found.", segment);
+                    return false;
+                }
                 return true;
             }
 
@@ -441,6 +494,17 @@ namespace JsonPatch.Json.Net
                 else if (!int.TryParse(segment, out arrayIndex))
                 {
                     patchFailReason = new JPatchFailReason($"Expected an array index at path segment but found '{segment}'.", string.Empty);
+                    return false;
+                }
+                else if(string.Compare(arrayIndex.ToString(), segment, StringComparison.Ordinal) != 0)
+                {
+                    patchFailReason = new JPatchFailReason($"Array indices with leading zeros are considered errors. Found '{segment}'.", string.Empty);
+                    return false;
+                }
+
+                if (arrayIndex >= sourceObjectAsArray.Count || arrayIndex < 0)
+                {
+                    patchFailReason = new JPatchFailReason($"Index out of range. Provided {arrayIndex} when the minimum value is 0 and the maximum value is {sourceObjectAsArray.Count - 1}.", string.Empty);
                     return false;
                 }
 
@@ -468,7 +532,7 @@ namespace JsonPatch.Json.Net
                 }
                 if (!sourceObjectAsObject.ContainsKey(segment))
                 {
-                    patchFailReason = new JPatchFailReason("Property not found", string.Empty);
+                    patchFailReason = new JPatchFailReason("Property not found.", string.Empty);
                     result = null;
                     return false;
                 }
@@ -492,6 +556,12 @@ namespace JsonPatch.Json.Net
                 else if (!int.TryParse(segment, out arrayIndex))
                 {
                     patchFailReason = new JPatchFailReason($"Expected an array index at path segment but found '{segment}'.", string.Empty);
+                    result = null;
+                    return false;
+                }
+                else if (string.Compare(arrayIndex.ToString(), segment, StringComparison.Ordinal) != 0)
+                {
+                    patchFailReason = new JPatchFailReason($"Array indices with leading zeros are considered errors. Found '{segment}'.", string.Empty);
                     result = null;
                     return false;
                 }

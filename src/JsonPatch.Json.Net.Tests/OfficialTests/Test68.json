@@ -1,0 +1,14 @@
+{
+  "comment": "test remove with bad number should fail",
+  "doc": {
+    "foo": 1,
+    "baz": [ { "qux": "hello" } ]
+  },
+  "patch": [
+    {
+      "op": "remove",
+      "path": "/baz/1e0/qux"
+    }
+  ],
+  "error": "Expected an array index at path segment but found '1e0'."
+}

@@ -1,0 +1,12 @@
+{
+  "doc": { "foo": null },
+  "patch": [
+    {
+      "op": "move",
+      "from": "/foo",
+      "path": "/bar"
+    }
+  ],
+  "expected": { "bar": null },
+  "comment": "null value should be valid obj property to be moved"
+}

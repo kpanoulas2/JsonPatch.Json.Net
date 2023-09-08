@@ -1,0 +1,12 @@
+{
+  "doc": { "foo": "bar" },
+  "patch": [
+    {
+      "op": "replace",
+      "path": "/foo",
+      "value": null
+    }
+  ],
+  "expected": { "foo": null },
+  "comment": "null value should still be valid obj property replace other value"
+}

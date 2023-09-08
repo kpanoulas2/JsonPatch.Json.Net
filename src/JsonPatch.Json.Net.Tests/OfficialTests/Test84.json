@@ -1,0 +1,12 @@
+{
+  "comment": "missing from location to copy",
+  "doc": { "foo": 1 },
+  "patch": [
+    {
+      "op": "copy",
+      "from": "/bar",
+      "path": "/foo"
+    }
+  ],
+  "error": "Object not found at path."
+}

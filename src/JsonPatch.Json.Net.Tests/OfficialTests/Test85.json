@@ -1,0 +1,11 @@
+{
+  "comment": "missing from parameter to move",
+  "doc": { "foo": 1 },
+  "patch": [
+    {
+      "op": "move",
+      "path": ""
+    }
+  ],
+  "error": "Document does not contain a valid JsonPatch schema."
+}

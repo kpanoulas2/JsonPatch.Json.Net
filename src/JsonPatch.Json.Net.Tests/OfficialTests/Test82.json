@@ -1,0 +1,11 @@
+{
+  "comment": "missing value parameter to test - where undef is falsy",
+  "doc": [ false ],
+  "patch": [
+    {
+      "op": "test",
+      "path": "/0"
+    }
+  ],
+  "error": "Document does not contain a valid JsonPatch schema."
+}

@@ -1,0 +1,15 @@
+{
+  "doc": [ "foo", "sil" ],
+  "patch": [
+    {
+      "op": "replace",
+      "path": "/1",
+      "value": [ "bar", "baz" ]
+    }
+  ],
+  "expected": [
+    "foo",
+    [ "bar", "baz" ]
+  ],
+  "comment": "value in array replace not flattened"
+}

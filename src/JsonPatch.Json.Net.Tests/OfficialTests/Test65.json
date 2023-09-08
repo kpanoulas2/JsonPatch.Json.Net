@@ -1,0 +1,12 @@
+{
+  "comment": "replacing the root of the document is possible with add",
+  "doc": { "foo": "bar" },
+  "patch": [
+    {
+      "op": "add",
+      "path": "",
+      "value": { "baz": "qux" }
+    }
+  ],
+  "expected": { "baz": "qux" }
+}

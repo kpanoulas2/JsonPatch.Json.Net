@@ -1,0 +1,11 @@
+{
+  "comment": "Missing 'value' parameter to add.",
+  "doc": [ 1 ],
+  "patch": [
+    {
+      "op": "add",
+      "path": "/-"
+    }
+  ],
+  "error": "Document does not contain a valid JsonPatch schema."
+}

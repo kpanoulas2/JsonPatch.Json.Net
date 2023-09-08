@@ -7,5 +7,5 @@
       "value": "5"
     }
   ],
-  "error": "Out of bounds (lower)"
+  "error": "Index out of range. Provided -1 when the minimum value is 0 and the maximum value is 2."
 }

@@ -76,6 +76,11 @@ namespace JsonPatch.Json.Net
 
         private static string[] ParsePath(string path)
         {
+            if (string.Compare(path, string.Empty, StringComparison.Ordinal) == 0)
+            {
+                return new string[0];
+            }
+
             path = ValidateAndNormalizePath(path);
             var parts = path.Split('/');
 
@@ -89,7 +94,7 @@ namespace JsonPatch.Json.Net
 
         private static string[] ParseFrom(string? from)
         {
-            if(from is null)
+            if (from is null)
             {
                 return new string[0];
             }
@@ -111,9 +116,9 @@ namespace JsonPatch.Json.Net
                 throw new JPatchException(new JPatchFailReason("A path cannot contain an empty segment.", ""));
             }
 
-            if (!path.StartsWith("/", StringComparison.Ordinal))
+            if (path.StartsWith("/"))
             {
-                return "/" + path;
+                path = path.Substring(1);
             }
 
             return path;

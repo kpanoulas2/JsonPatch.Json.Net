@@ -1,0 +1,11 @@
+{
+  "comment": "missing 'value' parameter to test",
+  "doc": [ null ],
+  "patch": [
+    {
+      "op": "test",
+      "path": "/0"
+    }
+  ],
+  "error": "Document does not contain a valid JsonPatch schema."
+}

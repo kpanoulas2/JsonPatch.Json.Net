@@ -1,0 +1,12 @@
+{
+  "comment": "replace whole document",
+  "doc": { "foo": "bar" },
+  "patch": [
+    {
+      "op": "replace",
+      "path": "",
+      "value": { "baz": "qux" }
+    }
+  ],
+  "expected": { "baz": "qux" }
+}

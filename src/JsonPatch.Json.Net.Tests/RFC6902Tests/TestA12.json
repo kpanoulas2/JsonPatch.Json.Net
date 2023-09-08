@@ -9,7 +9,5 @@
       "value": "qux"
     }
   ],
-  "error": {
-    "message": ""
-  }
+  "error": "Object not found at path."
 }

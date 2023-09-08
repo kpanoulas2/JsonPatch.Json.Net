@@ -5,12 +5,13 @@
   },
   "patch": [
     {
-      "op": "remove",
-      "path": "/baz/0/qux"
+      "op": "move",
+      "from": "/foo",
+      "path": "/bar"
     }
   ],
   "expected": {
-    "foo": 1,
-    "baz": [ {} ]
+    "baz": [ { "qux": "hello" } ],
+    "bar": 1
   }
 }

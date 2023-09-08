@@ -1,0 +1,15 @@
+{
+  "comment": "test copy with bad number should fail. A copy op shouldn't work with bad number",
+  "doc": {
+    "baz": [ 1, 2, 3 ],
+    "bar": 1
+  },
+  "patch": [
+    {
+      "op": "copy",
+      "from": "/baz/1e0",
+      "path": "/boo"
+    }
+  ],
+  "error": "Expected an array index at path segment but found '1e0'."
+}

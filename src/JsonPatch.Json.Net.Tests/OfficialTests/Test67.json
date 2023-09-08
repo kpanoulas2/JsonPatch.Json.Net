@@ -1,0 +1,30 @@
+{
+  "comment": "Adding to \"/-\" adds to the end of the array, even n levels down",
+  "doc": [
+    1,
+    2,
+    [
+      3,
+      [ 4, 5 ]
+    ]
+  ],
+  "patch": [
+    {
+      "op": "add",
+      "path": "/2/1/-",
+      "value": { "foo": [ "bar", "baz" ] }
+    }
+  ],
+  "expected": [
+    1,
+    2,
+    [
+      3,
+      [
+        4,
+        5,
+        { "foo": [ "bar", "baz" ] }
+      ]
+    ]
+  ]
+}

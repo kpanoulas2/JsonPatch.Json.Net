@@ -1,0 +1,12 @@
+{
+  "comment": "test with bad array number that has leading zeros",
+  "doc": [ "foo", "bar" ],
+  "patch": [
+    {
+      "op": "test",
+      "path": "/01",
+      "value": "bar"
+    }
+  ],
+  "error": "Array indices with leading zeros are considered errors. Found '01'."
+}

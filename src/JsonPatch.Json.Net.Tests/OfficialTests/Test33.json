@@ -7,5 +7,5 @@
       "value": 42
     }
   ],
-  "error": "Object operation on array target"
+  "error": "Expected an array index at path segment but found 'bar'."
 }

@@ -1,0 +1,15 @@
+{
+  "comment": "Patch with different capitalisation than doc",
+  "doc": { "foo": "bar" },
+  "patch": [
+    {
+      "op": "add",
+      "path": "/FOO",
+      "value": "BAR"
+    }
+  ],
+  "expected": {
+    "foo": "bar",
+    "FOO": "BAR"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "comment": "Invalid JSON Pointer token. JSON Pointer should start with a slash",
+  "doc": {},
+  "patch": [
+    {
+      "op": "add",
+      "path": "foo",
+      "value": "bar"
+    }
+  ],
+  "error": "Document does not contain a valid JsonPatch schema."
+}

@@ -1,0 +1,11 @@
+{
+  "comment": "Removing deep nonexistent path",
+  "doc": { "foo": "bar" },
+  "patch": [
+    {
+      "op": "remove",
+      "path": "/missing1/missing2"
+    }
+  ],
+  "error": "Object not found at path."
+}

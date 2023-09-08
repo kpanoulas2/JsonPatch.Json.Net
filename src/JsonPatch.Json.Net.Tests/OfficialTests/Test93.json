@@ -1,0 +1,11 @@
+{
+  "comment": "Removing nonexistent index",
+  "doc": [ "foo", "bar" ],
+  "patch": [
+    {
+      "op": "remove",
+      "path": "/2"
+    }
+  ],
+  "error": "Index out of range. Provided 2 when the minimum value is 0 and the maximum value is 1."
+}

@@ -1,0 +1,12 @@
+{
+  "comment": "test replace with bad number should fail. A replace op shouldn't replace in array with bad number.",
+  "doc": [ "" ],
+  "patch": [
+    {
+      "op": "replace",
+      "path": "/1e0",
+      "value": false
+    }
+  ],
+  "error": "Expected an array index at path segment but found '1e0'."
+}

@@ -1,0 +1,12 @@
+{
+  "comment": "missing from location to move",
+  "doc": { "foo": 1 },
+  "patch": [
+    {
+      "op": "move",
+      "from": "/bar",
+      "path": "/foo"
+    }
+  ],
+  "error": "Property not found."
+}
